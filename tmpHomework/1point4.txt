@@ -1,0 +1,57 @@
+ADT Rational_Num {
+	数据对象：D={ e1 ,e2| e1,e2属于I (I为整数集合) }
+	数据关系：R={ <e1,e2> }
+	基本操作：
+	InitRational_Num(&T,v1,v2)
+	操作结果：构造有理数T,元素e1,e2分别被赋以参数v1,v2的值
+	DestroyRational_Num(&T) 
+	初始条件：有理数T已存在 
+	操作结果：有理数T被销毁
+	GetRational_Num(T,i,&e)
+	初始条件：有理数T已存在, i=1|2
+	操作结果：用e返回有理数T的分子或分母,i=1返回分子, i=2返回分母
+	PutRational_Num(T,i,e)
+	初始条件：有理数T已存在, i=1|2
+	操作结果：改变有理数T的分子或分母为e,i=1改变分子, i=2改变分母
+	AddRational_Num(T1,T2,&T3)
+	初始条件：有理数T1,T2已存在
+	操作结果：有理数T1,T2相加,结果存入有理数T3
+	SubRational_Num(T1,T2,&T3)
+	初始条件：有理数T1,T2已存在
+	操作结果：有理数T1,T2相减,结果存入有理数T3
+	MulRational_Num(T1,T2,&T3)
+	初始条件：有理数T1,T2已存在
+	操作结果：有理数T1,T2相乘,结果存入有理数T3
+	DivRational_Num(T1,T2,&T3)
+	初始条件：有理数T1,T2已存在
+	操作结果：有理数T1,T2相除,结果存入有理数T3
+} ADT Rational_Num
+
+ADT Imaginary_Num {
+	数据对象: D={e1,e2|e1,e2属于I(I为整数集合)}
+	数据关系: R={<e1,e2>}
+	基本操作:
+	InitImaginary(&T,v1,v2)
+	操作结果: 构造了虚数,v1,v2分别被赋以e1,e2的值。
+	DestoryImaginary(&T)
+	初始条件: 虚数T已存在
+	操作结果: T被销毁
+	Get(T,i,&e)
+	初始条件: 虚数T已存在,i=1|2
+	操作结果: 用e返回T的实部或虚部
+	Put(&T,i,e)
+	初始条件: 虚数T已存在,i=1|2
+	操作结果: 改变T的第i个值为e,i=1改变是实部,i=2改变虚部
+	AddImaginary_Num(T1,T2,&T3)
+	初始条件：虚数T1,T2已存在
+	操作结果：虚数T1,T2相加,结果存入虚数T3
+    SubInaginary_Num(T1,T2,&T3) 
+    初始条件：虚数T1,T2已存在 
+	操作结果：虚数T1,T2相减,结果存入虚数T3
+	MulImaginary_Num(T1,T2,&T3) 
+	初始条件：虚数T1,T2已存在 
+	操作结果：虚数T1,T2相乘,结果存入虚数T3
+	DivImaginary_Num(T1,T2,&T3) 
+	初始条件：虚数T1,T2已存在 
+	操作结果：虚数T1,T2相除,结果存入虚数T3
+}ADT Imaginary_Num
