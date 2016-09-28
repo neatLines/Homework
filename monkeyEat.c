@@ -32,21 +32,21 @@
 // }
 
 
-// int oneday(int pealsNumber,int count) {
-// 	pealsNumber++;
-// 	pealsNumber*=2;
-// 	count--;
-// 	if (count) {
-// 		return oneday(pealsNumber,count);
-// 	} else {
-// 		return pealsNumber;
-// 	}
-// }
-// int main(int argc, char const *argv[]) {
-// 	// int pealsNumber = 1;
-// 	printf("%d\n", oneday(1,9));
-// 	return 0;
-// }
+ int oneday(int pealsNumber,int count) {
+ 	pealsNumber++;
+ 	pealsNumber*=2;
+ 	count--;
+ 	if (count) {
+ 		return oneday(pealsNumber,count);
+ 	} else {
+ 		return pealsNumber;
+ 	}
+ }
+ int main(int argc, char const *argv[]) {
+ 	// int pealsNumber = 1;
+ 	printf("%d\n", oneday(1,9));
+ 	return 0;
+ }
 
 
 // int main(int argc, char const *argv[])
