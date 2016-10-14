@@ -1,53 +1,79 @@
-#include <stdio.h>
-typedef struct LNode {//定义节点
-	int Data;
-	LNode next;
-} LNode,*LinkList;
+#include <iostream>
+
+using namespace std;
+
+template<typename T>
+class Node
+{
+public:
+    T Data;
+    Node<T>* Next;
+    Node<T>()
+    {
+        Next = nullptr;
+    }
+};
 /*连接字符串
  *输入两字符串
  *输出连接后的链表头*/
-LNode twoToOne(LinkList A, LinkList B) {
-	LinkList ret = (LinkList)malloc(sizeof(LNode));//申请空间
-	LNode re = ret;
-	while(A->next!=NULL&&B->next!=NULL) {//AB都没完时
-		if(A->Data<B->Data) {		//A的数据较小
-			ret->Data = A->Data;
-			A=A->next;		//A加入ret A后移一位
-		} else {
-			ret->Data = B->Data;	
-			B=B->next;		//B加入ret B后移一位
-		}
-		ret->next = (LinkList)malloc(sizeof(LNode));
-		ret = ret->next;
-		ret->next = NULL;
-	}
-
-	while(A->next!=NULL) {			//A不为空
-		ret->Data = A->Data;		//取A的数据
-		ret->next = (LinkList)malloc(sizeof(LNode));
-		ret = ret->next;		//ret分配空间并后移一位
-		ret->next = NULL;		
-		A = A->next;			//A后移一位
-	}
-
-	while(B->next!=NULL) {
-		ret->Data = A->Data;		//逻辑同上一个while
-		ret->next = (LinkList)malloc(sizeof(LNode));
-		ret = ret->next;
-		ret->next = NULL;
-		B = B->next;
-	}
+Node<int>* twoToOne(Node<int>* A, Node<int>* B) {
+    Node<int>* ret = new Node<int>();//申请空间
+    Node<int>* re = ret;
+    while(A->Next!=nullptr&&B->Next!=nullptr) {//AB都没完时
+        if(A->Data<B->Data) {		//A的数据较小
+            ret->Data = A->Data;
+            A=A->Next;		//A加入ret A后移一位
+        } else {
+            ret->Data = B->Data;
+            B=B->Next;		//B加入ret B后移一位
+        }
+        ret->Next = new Node<int>();
+        ret = ret->Next;
+        ret->Next = NULL;
+    }
+    
+    while(A!=NULL) {			//A不为空
+        ret->Data = A->Data;		//取A的数据
+        ret->Next = new Node<int>();
+        ret = ret->Next;		//ret分配空间并后移一位
+        ret->Next = NULL;
+        A = A->Next;			//A后移一位
+    }
+    
+    while(B!=NULL) {
+        ret->Data = B->Data;		//逻辑同上一个while
+        ret->Next = new Node<int>();
+        ret = ret->Next;
+        ret->Next = NULL;
+        B = B->Next;
+    }
+    return re;
+}
+//打印链表
+void printList(Node<int> * hc)
+{
+    while (hc != nullptr)
+    {
+        cout << hc->Data << "  ";
+        hc = hc->Next;
+    }
 }
 int main()
 {
-	LinkList A = (LinkList)malloc(sizeof(LNode));
-	LinkList B = (LinkList)malloc(sizeof(LNode));
-	LinkList C = (LinkList)malloc(sizeof(LNode));
-	A->Data=1;
-	A->next = (LNode)malloc(sizeof(LNode));
-	A->next->Data=2;
-	B->Data=2;
-	B->next = (LNode)malloc(sizeof(LNode));
-	B->Data=3;
-	C=TwoToOne;
+    Node<int>* ha = new Node<int>();
+    ha->Data = 1;
+    ha->Next = new Node<int>();
+    ha->Next->Data = 0;
+    ha->Next->Next = NULL;
+    Node<int>* hb = new Node<int>();
+    hb->Data = 3;
+    hb->Next = new Node<int>();
+    hb->Next->Data = 4;
+    hb->Next->Next = new Node<int>();
+    hb->Next->Next->Data=2;
+    hb->Next->Next->Next=NULL;
+    Node<int>* hc = twoToOne(ha,hb);
+    printList(hc);
+    
+    
 }
