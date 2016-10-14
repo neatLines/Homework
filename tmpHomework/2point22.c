@@ -1,37 +1,53 @@
-#include <stdio.h>
-typedef struct LNode {	//定义节点
-	int Data;
-	LNode next;
+#include <iostream>
+
+using namespace std;
+
+template<typename T>
+class Node
+{
+public:
+    T Data;
+    Node<T>* Next;
+    Node<T>()
+    {
+        Next = nullptr;
+    }
+};
+Node<int>* changeList(Node<int>* head) {//逆序
+    Node<int>* p = head;
+    Node<int>* q = p->Next;
+    Node<int>* r;
+    while(q != nullptr){
+        r = q->Next;
+        q->Next = p;
+        p = q;
+        q = r;
+    }
+    head->Next = nullptr;
+    head = p;
+    return head;
 }
 
-LNode changeList(*LinkList head) {//逆序
-	LNode p = head;  
-    LNode q = p.next;
-	LNode r;
-    while(q != null){  
-		r = q.next;
-		q.next = p;  
-		p = q;  
-		q = r;  
-	}  
-	head.next = null;  
-	head = p;  
-	return head;
+//打印链表
+void printList(Node<int> * hc)
+{
+    while (hc != nullptr)
+    {
+        cout << hc->Data << "  ";
+        hc = hc->Next;
+    }
 }
+
 
 int main()
 {
-	LinkList ll = (LinkList)malloc(sizeof(LNode));
-	LNode temp;
-	temp = (LNode)malloc(sizeof(LNode));
-	ll->next=temp;
-	temp->Data=1;
-	temp->next=(LNode)malloc(sizeof(LNode));
-	temp=temp->next;
-	temp->data=10;
-	temp->next=(LNode)malloc(sizeof(LNode));
-	temp=temp->next;
-	temp->data=100;
-	temp->next=NULL;
-	LinkList ge = changeList(ll);
+    Node<int>* ha = new Node<int>();
+    ha->Data = 1;
+    ha->Next = new Node<int>();
+    ha->Next->Data = 0;
+    ha->Next->Next = NULL;
+    Node<int>* hc = changeList(ha);
+    printList(hc);
+    
+    
 }
