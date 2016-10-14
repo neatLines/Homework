@@ -1,21 +1,18 @@
 #include <iostream>
 
 using namespace std;
-
+//定义节点
 template<typename T>
 class Node
 {
 public:
     T Data;
     Node<T>* Next;
-    Node<T>()
-    {
-        Next = nullptr;
-    }
 };
 
 
-
+//链接两链表，
+//链表1，链表2，链表1长度，链表2长度
 Node<int>* linkNode(Node<int>* ha, Node<int>* hb, int m, int n) {
 	Node<int>* temp = ha;
 	if(m < n) {
@@ -30,7 +27,7 @@ Node<int>* linkNode(Node<int>* ha, Node<int>* hb, int m, int n) {
 	free(ha);
 	return temp;
 }
-
+//打印链表
 void printList(Node<int> * hc)
 {
     while (hc != nullptr)
