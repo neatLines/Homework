@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+		<script type="text/javascript">
+		function sumFor() {
+			var ret =0;
+			for (var i = 50; i >= 1; i-=2) {
+				ret+=i;
+			}
+			document.getElementById("sum").innerHTML = ret;
+		}
+
+		function sumWhile() {
+			var ret = 0;
+			var i = 0;
+			while(i <=50) {
+				ret+=i;
+				i+=2;
+			}
+			document.getElementById("sum").innerHTML = ret;
+		}
+
+		function seeHello(){
+			var x="";
+			var time=new Date().getHours();
+			if (time<6){
+				x="凌晨好";
+    		} else if (time <12) {
+    			x="早上好"
+    		} else if (time < 18) {
+    			x="下午好"
+    		} else {
+    			x="晚上好"
+    		}
+			document.getElementById("sum").innerHTML=x;
+		}
+
+		function addSharp() {
+			var Str = "I am a girl, I like dancing!"
+			var ret = "";
+			for (var i = 0; i < Str.length; i++) {
+				ret+=Str.substr(i,1);
+				ret+='#';
+			}
+			document.getElementById("sum").innerHTML=ret;
+		}
+		</script>
+</head>
+<body>
+	<p id="sum">show</p>
+	<button type="button" onclick="sumFor()">getSum1</button>
+	<button type="button" onclick="sumWhile()">getSum2</button>
+	<button type="button" onclick="seeHello()">seeHello</button>
+	<button type="button" onclick="addSharp()">addSharp</button>
+</body>
+</html>
+ 

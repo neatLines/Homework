@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jstest</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/back.css">
+	<script>
+		function one(){
+			document.getElementById("demo").innerHTML="I am right.htm";
+		}
+		function two() {
+			document.getElementById("demo").innerHTML="I am right2.htm"
+		}
+	</script>
+
+</head>
+<body>
+	<div class="row2">
+		<div class="row3">
+			<a onclick="one()">页面一</a>
+			<br>
+			<a onclick="two()">页面二</a>
+			<br>
+			<a href="jstest.html">点击此超链接</a>
+		</div>
+		<div class="row3">
+			<p id="demo"></p>
+		</div>
+	</div>
+</body>
+</html>

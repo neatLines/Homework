@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>emailLogin</title>
+	<link rel="stylesheet prefetrch" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+	<script type="text/javascript">
+		function submit() {
+			var x = document.getElementById('in1').value;
+			var pass = document.getElementById('ps1');
+			var pass2 = document.getElementById('ps2');
+			if (x.length<6||x.length>10) {
+				var y = document.getElementById("text1");
+				y.style.color="red";
+			}
+			if (pass!=pass2||pass==""||pass2=="") {
+				var y = document.getElementById("text2");
+				y.style.color="red";
+			}
+		}
+
+		function reset() {
+			var x = document.getElementsByTagName('input');
+			for (var i = x.length - 1; i >= 0; i--) {
+				x[i].value="";
+			}
+			x = document.getElementsByTagName('textarea');
+			for (var i = x.length - 1; i >= 0; i--) {
+				x[i].value="";
+			}
+		}
+	</script>
+	<div class="container">
+		<div class="jumbotron">
+			<div class="row">
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+					<h4>
+					<font style="color: red">*</font>邮箱地址:
+					<input id="in1" type="text" name="emailAdd">
+					</h4>
+					<div class="coption col-xs-12 col-sm-10 col-sm-offset-1 col-md-8">
+						<font id="text1" style="color: grey"> 长度6-10位不能为空</font>
+					</div>
+					<br>
+				</div>
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+					<h4><font style="color: red">*</font>邮箱密码:
+					<input id="ps1" type="password" name="password">
+					</h4>
+					<br>
+				</div>
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+					<h4><font style="color: red">*</font>确认密码:
+					<input id="ps2" type="password" name="passwordCont">
+					</h4>
+					<div class="coption col-xs-12 col-sm-10 col-sm-offset-1 col-md-8">
+						<font id="text2" style="color: grey"> 密码必须相同且不能为空 </font>
+					</div>
+					<br>
+				</div>
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+					<div class="col-xs-4">
+						<h4><font style="color: red">*</font>来自城市:</h4>						
+					</div>	
+					<div class="col-xs-4">
+  							<select class="form-control"> 
+    							<option>北京</option> 
+    							<option>上海</option> 
+    							<option>广州</option> 
+      							<option>深圳</option> 
+      							<option>杭州</option> 
+      						</select>
+      				</div>
+					<br>
+				</div>
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+					<div class="col-xs-4">
+						<h4><font style="color: red">*</font>性别:</h4>						
+					</div>	
+					<div class="col-xs-4">
+  					   		<select class="form-control"> 
+    							<option>男</option> 
+     							<option>女</option> 
+    							<option>保密</option> 
+      						</select>
+      				</div>
+					<br>
+				</div>
+				
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+					<form role="form">
+  						<div class="form-group">
+							<h4><font style="color: red">*</font>个人爱好:</h4>
+    						<textarea class="form-control" rows="3"></textarea>
+  						</div>
+					</form>
+				</div>
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+					<form role="form">
+  						<div class="form-group">
+							<h4><font style="color: red">*</font>个人介绍:</h4>
+    						<textarea class="form-control" rows="3"></textarea>
+  						</div>
+					</form>
+				</div>
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+					<button class="btn btn-success" onclick="submit()">提交</button>
+					<button class="btn btn-danger" onclick="reset()">重置</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

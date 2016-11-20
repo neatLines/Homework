@@ -1,0 +1,38 @@
+
+.row2 {
+	position: absolute;
+	bottom: 0px;
+	height: 500px;
+	width: 100%;
+    margin-right: -10px;
+    margin-left: -10px;
+	margin-bottom: -10px;
+	background: #cccccc;
+}
+
+.row3 {
+	border-style: outset;
+	margin:20px,20px,20px,20px; 
+	height: 100%;
+	width: 49.5%;
+	float: left;
+}
+
+
+
+a
+{	color: #0000FF;
+	text-decoration: underline;
+	font-size: 10px;
+}
+a:visited{
+	color: #FF0000;
+	font-size: 10px;
+}
+a:hover {
+	color: #00FF00;
+	font-size: 16px;
+}
+a:active{
+	font-color: #FFFFFF;
+}
