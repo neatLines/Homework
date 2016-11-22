@@ -15,9 +15,6 @@
 
 using namespace std;
 
-typedef struct Node {
-
-};
 
 //邻接矩阵存储方法
 
@@ -31,7 +28,8 @@ typedef struct MGraph{
 //迪杰斯特拉
 int getLength(MGraph g,int e) {
     int length = 0;
-    int dist[MAXV] = {INF};
+    int dist[MAXV] = {0};
+    int no[2] = {0};
     bool hadGot[MAXV] = {0};
     hadGot[e] = 1;
     for (int i = 0; i < g.n ; i++) {
@@ -40,32 +38,37 @@ int getLength(MGraph g,int e) {
             if (hadGot[j]) {
                 for (int k = 0; k < g.n; ++k) {
                     if ( temp > g.edges[j][k]&&!hadGot[k]) {
-                        temp = g.edges[j][k];
+                        no[0]=j;
+                        no[1]=k;
+                        dist[k] = dist[j]+g.edges[j][k];
                         e = k;
                     }
                 }
             }
         }
         hadGot[e]=1;
-        length+=temp;
+        dist[no[1]] = dist[no[0]] + g.edges[no[0]][no[1]];
+    }
+    for (int i = 0; i < g.n; i++) {
+        length+=dist[i];
     }
     return length;
 }
 
 
 int getMinLength(MGraph g) {
-    int minPoint = 0;
-    int Length[MAXV] = {INF};
+    int minPoint = INF;
+    int l = 0;
     for (int i = 0; i < g.n ; i++) {
         int tempLength = INF;
 
         tempLength = getLength(g,i);
-
-        if (tempLength<Length[minPoint]) {
-            minPoint = i;
+        if (minPoint > tempLength) {
+            minPoint = tempLength;
+            l = i;
         }
     }
-    return minPoint;
+    return l;
 }
 
 //主函数
@@ -92,7 +95,7 @@ int main()
         }
         g.n=n;
         cout << ("采用迪杰斯特拉算法得到的地址为:") << getMinLength(g) << endl;
-
+        
         printf("\n请输入带权无向图的顶点个数：");
     }
     return 0;
