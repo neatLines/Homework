@@ -32,14 +32,14 @@
     userBean.setUsername(userName);
     System.out.println(userName+password);
 %>
-<%  try {
-        regist.setUserBean(userBean);
-        out.println(12);
-        regist.regist();
-        out.println("注册成功");}
-    catch(Exception e) {
-        out.println(e.getMessage());
-    }
+<%try {
+      regist.setUserBean(userBean);
+      out.println(12);
+      regist.regist();
+      out.println("注册成功");}
+  catch(Exception e) {
+      out.println(e.getMessage());
+  }
 %>
 <br>
 <a href="login.jsp">返回</a>
