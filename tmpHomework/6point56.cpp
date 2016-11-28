@@ -2,13 +2,19 @@
 #include <stack>
 
 using namespace std;
+/*
+ 树的结构
+ 增加nextNode
+ */
 typedef struct tree_node{
     int elem;
     tree_node *leftNode;
     tree_node *rightNode;
     tree_node *nextNode;
 }tree_node,*tree;
-
+/*
+ 创建树
+ */
 tree_node* create_Tree(int x) {
     tree_node* node=new tree_node;
     node->elem = x;

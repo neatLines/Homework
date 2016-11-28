@@ -2,12 +2,20 @@
 #include <stack>
 
 using namespace std;
+
+/*
+ 节点结构
+ */
 typedef struct tree_node{
     int elem;
     tree_node *leftNode;
     tree_node *rightNode;
 }tree_node,*tree;
-
+/*
+ 创建节点
+ 输入节点值
+ 返回节点
+ */
 tree_node* create_Tree(int x) {
     tree_node* node=new tree_node;
     node->elem = x;

@@ -1,12 +1,19 @@
 #include <iostream>
 
 using namespace std;
+/*
+ 树的结构
+ */
 typedef struct tree_node{
     int elem;
     tree_node *leftNode;
     tree_node *rightNode;
 }tree_node,*tree;
-
+/*
+ 判断是否相似
+ 输入两棵树的头节点
+ 输出0/1
+ */
 bool isLike(tree rootA,tree rootB) {
     if (rootA==NULL&&rootB==NULL) {
         return true;
@@ -16,6 +23,11 @@ bool isLike(tree rootA,tree rootB) {
     }
     return isLike(rootA->leftNode, rootB->leftNode)&&isLike(rootA->rightNode, rootB->rightNode);
 }
+/*
+ 创建节点
+ 输入节点值
+ 返回节点
+ */
 tree_node* create_Tree(int x) {
     tree_node* node=new tree_node;
     node->elem = x;
