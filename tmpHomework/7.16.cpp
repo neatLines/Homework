@@ -1,26 +1,26 @@
 #include <iostream>
 #define MAX_VERTEX_NUM 10
 using namespace std;
-typedef struct ArcNode {
-    int adjvex;
-    ArcNode *nextArc;
-    ArcNode *lastArc;
-    int info;
+typedef struct ArcNode {    //路径
+    int adjvex;		//路径指向
+    ArcNode *nextArc;	//下一条路径
+    ArcNode *lastArc;	//上一条路径
+    int info;			//路径信息
 }ArcNode;
 
-typedef struct Vnode {
-    int data;
-    ArcNode *firstArc;
-    Vnode *nextVex;
-    Vnode *lastVex;
+typedef struct Vnode {		//节点
+    int data;			    //节点信息
+    ArcNode *firstArc;	    //节点第一条路径
+    Vnode *nextVex;		    //下一个节点
+    Vnode *lastVex;		    //上一个节点
 }VNode,AdjList[MAX_VERTEX_NUM];
 
 typedef struct {
-    AdjList root;
-    int length;
+    AdjList root;		//储存图
+    int length;		//节点个数
 }ALGraph;
 
-class BaseGraph {
+class BaseGraph {		//方法类
 private:
 
 public:
@@ -30,7 +30,7 @@ public:
     BaseGraph(){
         alGraph.root->nextVex=NULL;
     }
-    void InsertVex(VNode *vNode,ALGraph *alGraph1) {
+    void InsertVex(VNode *vNode,ALGraph *alGraph1) {	//插入节点
         cout << vNode->data << "正在插入" << endl;
         VNode *temp = alGraph.root;
         while (temp->nextVex!=NULL) {
@@ -39,7 +39,7 @@ public:
         alGraph1->length++;
         temp[alGraph1->length] = *vNode;
     }
-    void InsertArc(VNode *vNode, ArcNode *arcNode) {
+    void InsertArc(VNode *vNode, ArcNode *arcNode) {	//插入路径
         cout <<"从" << vNode->data <<"指向第" << arcNode->adjvex << "个节点的路径正在加入" << endl;
         ArcNode *temp;
         if (vNode->firstArc!=NULL) {
@@ -54,11 +54,11 @@ public:
             vNode->firstArc->lastArc=NULL;
         }
     }
-    void DeleteVex(VNode *vNode) {
+    void DeleteVex(VNode *vNode) {				//删除节点
         cout << "正在删除" + vNode->data << endl;
         vNode->lastVex->nextVex=vNode->nextVex;
     }
-    void DeleteArc(ArcNode *w,ALGraph alGraph1) {
+    void DeleteArc(ArcNode *w,ALGraph alGraph1) {	//删除路径
         cout << "正在删除指向" << w->adjvex << "的路径" << endl;
         if (w->nextArc!=NULL) {
             w->lastArc->nextArc = w->nextArc;
