@@ -1,36 +1,32 @@
-#include <malloc.h>
 #include <iostream>
 using namespace std;
-#define MAX_VERTEX_NUM 100
-bool visit[MAX_VERTEX_NUM];
-typedef struct ArcNode{
-    int adjvex;                      //¸Ã»¡ËùÖ¸ÏòµÄ¶¥µãµÄÎ»ÖÃ
-    struct ArcNode *nextarc;         //Ö¸ÏòÏÂÒ»Ìõ»¡µÄÖ¸Õë
-    int *info;                         //¸Ã»¡Ïà¹ØĞÅÏ¢µÄÖ¸Õë
+#define MAX_VERTEX_NUM 100      //  æœ€å¤§çš„èŠ‚ç‚¹æ•°ä¸º100
+bool visit[MAX_VERTEX_NUM];     //  ä¿å­˜è¢«è®¿é—®è¿‡çš„èŠ‚ç‚¹
+typedef struct ArcNode{         //  è·¯å¾„
+    int adjvex;                 //  è·¯å¾„æŒ‡å‘
+    struct ArcNode *nextarc;    //  ä¸‹ä¸€æ¡è·¯å¾„
+    int *info;                  //  è·¯å¾„ä¿¡æ¯
 }ArcNode;
-typedef struct VNode{
-    char data;                         //¶¥µãĞÅÏ¢
-    ArcNode *firstarc;                  //Ö¸ÏòµÚÒ»ÌõÒÀ¸½¸Ã¶¥µãµÄ»¡µÄÖ¸Õë
+typedef struct VNode{           //  èŠ‚ç‚¹
+    char data;                  //  èŠ‚ç‚¹ä¿¡æ¯
+    ArcNode *firstarc;          //  èŠ‚ç‚¹çš„ç¬¬ä¸€æ¡æŒ‡å‡ºè·¯å¾„
 }VNode,AdjList[MAX_VERTEX_NUM];
-typedef struct{
-    AdjList vertices;
-    int vexnum,arcnum;                    //Í¼µÄµ±Ç°¶¥µãÊıºÍ»¡Êı
+typedef struct{                 //  å›¾çš„ç»“æ„ä½“
+    AdjList vertices;           //  ä¿å­˜èŠ‚ç‚¹ä¿¡æ¯
+    int vexnum,arcnum;          //  ä¿å­˜èŠ‚ç‚¹æ•°å’Œè·¯å¾„æ•°
 }ALGraph;
-void CreateALGraph(ALGraph *G)
-{
-    int i,j,k;
+void CreateALGraph(ALGraph *G) {//  åˆ›å»ºå›¾
+    int i, j =0;
     ArcNode *e;
-    cout<<"ÇëÊäÈë¶¥µãÊıºÍ±ßÊı£º"<<endl;
+    cout<<"è¾“å…¥èŠ‚ç‚¹æ•°å’Œè·¯å¾„æ•°"<<endl;
     cin>>G->vexnum>>G->arcnum;
-    cout<<"ÇëÊäÈë¶¥µã×Ö·û£º"<<endl;
-    for(i=0;i<G->vexnum;i++)
-    {
+    cout<<"è¾“å…¥èŠ‚ç‚¹åç§°"<<endl;
+    for(int i=0;i<G->vexnum;i++) {
         cin>>G->vertices[i].data;
         G->vertices[i].firstarc=NULL;
     }
-    for(k=0;k<G->arcnum;k++)
-    {
-        cout<<"ÊäÈë±ß(vi,vj)ÉÏµÄ¶¥µãĞòºÅ£º"<<endl;
+    for(int k=0;k<G->arcnum;k++) {
+        cout<<"è¾“å…¥è·¯å¾„"<<endl;
         cin>>i>>j;
         e=(ArcNode *)malloc(sizeof(ArcNode));
         e->adjvex=j;
@@ -42,20 +38,15 @@ void CreateALGraph(ALGraph *G)
         G->vertices[i].firstarc=e;
     }
 }
-void printALGraph(ALGraph G)
-{
-    int i=0;
+void printALGraph(ALGraph G) {          //æ‰“å°å›¾
     ArcNode *p;
-    for(i=0;i<G.vexnum;++i)
+    for(int i=0;i<G.vexnum;++i)
         cout<<G.vertices[i].data<<" ";
     cout<<endl;
-    for(i=0;i<G.vexnum;i++)
-    {
+    for(int i=0;i<G.vexnum;i++) {
         p=G.vertices[i].firstarc;
-        while(p)
-        {
-            if(i<p->adjvex)
-            {
+        while(p) {
+            if(i<p->adjvex) {
                 cout<<G.vertices[i].data<<"->"<<G.vertices[p->adjvex].data<<" ";
             }
             p=p->nextarc;
@@ -64,42 +55,42 @@ void printALGraph(ALGraph G)
     }
 }
 int FirstAdjVex(ALGraph G,int v)
- {
-     ArcNode *p;
-     int v1;
-     v1=v;/* v1Îª¶¥µãvÔÚÍ¼GÖĞµÄĞòºÅ */
-     p=G.vertices[v1].firstarc;
-   if(p)
-     return p->adjvex;
-   else
-     return -1;
- }
-int NextAdjVex(ALGraph G,int v,int w)
- {
-     ArcNode *p;
-     p=G.vertices[v].firstarc;
-     if(!visit[p->adjvex])
+{
+    ArcNode *p;
+    int v1;
+    v1=v;/* v1ä¸ºé¡¶ç‚¹våœ¨å›¾Gä¸­çš„åºå· */
+    p=G.vertices[v1].firstarc;
+    if(p)
         return p->adjvex;
-     else{
+    else
+        return -1;
+}
+int NextAdjVex(ALGraph G,int v,int w)
+{
+    ArcNode *p;
+    p=G.vertices[v].firstarc;
+    if(!visit[p->adjvex])
+        return p->adjvex;
+    else{
         while(p->nextarc!=NULL){
             p=p->nextarc;
             if(!visit[p->adjvex])
                 return p->adjvex;
         }
         return -1;
-     }
- }
-void DFS(ALGraph G,int v1)                /*´ÓµÚv1¸ö¶¥µã³ö·¢µİ¹éµØÉî¶ÈÓÅÏÈ±éÀúÍ¼G*/
- {
-     int w1;
-     visit[v1]=true;
-     for(w1=FirstAdjVex(G,v1);w1>=0;w1=NextAdjVex(G,v1,w1)){
+    }
+}
+void DFS(ALGraph G,int v1)                /*ä»ç¬¬v1ä¸ªé¡¶ç‚¹å‡ºå‘é€’å½’åœ°æ·±åº¦ä¼˜å…ˆéå†å›¾G*/
+{
+    int w1;
+    visit[v1]=true;
+    for(w1=FirstAdjVex(G,v1);w1>=0;w1=NextAdjVex(G,v1,w1)){
         if(!visit[w1])
         {
             DFS(G,w1);
         }
-     }
- }
+    }
+}
 bool Search(ALGraph G,int i,int j)
 {
     DFS(G,i);
@@ -118,10 +109,10 @@ int main()
     {
         visit[i]=false;
     }
-    cout<<"ÇëÊäÈëÁ½¸öµãµÄĞòºÅ£º";
+    cout<<"è¯·è¾“å…¥ä¸¤ä¸ªç‚¹çš„åºå·ï¼š";
     cin>>v1>>w1;
     if(Search(G,v1,w1)==true)
-        cout<<"Á½µã¼ä´æÔÚÂ·¾¶"<<endl;
+        cout<<"ä¸¤ç‚¹é—´å­˜åœ¨è·¯å¾„"<<endl;
     else
-        cout<<"Á½µã¼ä²»´æÔÚÂ·¾¶"<<endl;
+        cout<<"ä¸¤ç‚¹é—´ä¸å­˜åœ¨è·¯å¾„"<<endl;
 }
